@@ -24,13 +24,31 @@
 
 <script>
 
-import { ref } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 
 export default {
   // No draggable component needed
   setup() {
     const joke = ref('')
     const likedJokes = ref([])
+    const STORAGE_KEY = 'liked-jokes'
+
+    // Load liked jokes from localStorage on component mount
+    onMounted(() => {
+      const savedJokes = localStorage.getItem(STORAGE_KEY)
+      if (savedJokes) {
+        try {
+          likedJokes.value = JSON.parse(savedJokes)
+        } catch (e) {
+          console.warn('Failed to parse saved jokes from localStorage')
+        }
+      }
+    })
+
+    // Watch for changes to likedJokes and save to localStorage
+    watch(likedJokes, (newJokes) => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(newJokes))
+    }, { deep: true })
 
     async function fetchJoke() {
       joke.value = ''

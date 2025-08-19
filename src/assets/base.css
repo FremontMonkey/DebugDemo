@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Play:wght@400;700&family=Raleway:wght@400;700&display=swap');
+/* color palette from <https://github.com/vuejs/theme> */
+
+:root {
+  --color-bg: #4F436F;
+  --color-primary: #24212d;
+  --color-secondary: #3a324e;
+  --color-accent: #4f436f;
+  --color-highlight: #663c7c;
+  --color-muted: #3e4356;
+  --color-info: #5f6f8d;
+  --color-background: #eae6ef;
+  --color-heading: #24212d;
+  --color-text: #3a324e;
+  --section-gap: 160px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #24212d;
+    --color-heading: #eae6ef;
+    --color-text: #eae6ef;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: #4F436F !important;
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-family: 'Google Play', 'Raleway', Arial, sans-serif;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

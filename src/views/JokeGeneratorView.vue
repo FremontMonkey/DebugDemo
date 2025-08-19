@@ -1,11 +1,15 @@
 <template>
   <div class="joke-generator">
     <h1>Joke Generator 😂</h1>
+    <!-- ERROR 2: Using undefined variable 'undefinedVar' - should cause runtime error -->
+    <!-- <p v-if="undefinedVar">{{ undefinedVar }}</p> -->
     <button class="joke-btn" @click="fetchJoke">Generate Joke</button>
     <div v-if="joke" class="joke-output">
       <div>{{ joke }}</div>
       <div class="joke-actions">
         <button class="thumb-btn like-btn" @click="likeJoke" title="Like">👍🏻</button>
+        <!-- ERROR 3: Typo in method name 'dislikeJok' instead of 'dislikeJoke' -->
+        <!-- <button class="thumb-btn dislike-btn" @click="dislikeJok" title="Dislike">👎🏻</button> -->
         <button class="thumb-btn dislike-btn" @click="dislikeJoke" title="Dislike">👎🏻</button>
       </div>
     </div>
@@ -42,7 +46,7 @@ export default {
     // Initialize sortable after component is mounted
     const initSortable = async () => {
       await nextTick()
-      if (sortableRef.value) {
+      if (sortableRef.value && !sortableInstance) {
         sortableInstance = new Sortable(sortableRef.value, {
           animation: 200,
           ghostClass: 'ghost',
@@ -80,11 +84,8 @@ export default {
     // Watch for changes to likedJokes and save to localStorage
     watch(likedJokes, (newJokes) => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(newJokes))
-      // Reinitialize sortable when the list changes
-      if (sortableInstance) {
-        sortableInstance.destroy()
-      }
-      initSortable()
+      // Don't reinitialize sortable here - it causes infinite loops
+      // The sortable instance will handle the DOM updates automatically
     }, { deep: true })
 
     async function fetchJoke() {
@@ -92,6 +93,8 @@ export default {
       try {
         const res = await fetch('https://official-joke-api.appspot.com/random_joke')
         const data = await res.json()
+        // ERROR 4: Logic error - using wrong property names (should be setup + punchline)
+        // joke.value = data.question + ' ' + data.answer
         joke.value = data.setup + ' ' + data.punchline
       } catch (e) {
         joke.value = 'Failed to fetch joke.'
@@ -116,6 +119,8 @@ export default {
     }
 
     function clearAllJokes() {
+      // ERROR 7: Using wrong method - clear() doesn't exist on arrays (should be = [])
+      // likedJokes.value.clear()
       likedJokes.value = []
     }
 
@@ -128,10 +133,15 @@ export default {
       dislikeJoke,
       removeJoke,
       clearAllJokes
+      // ERROR 5: Missing 'initSortable' in return - function won't be accessible
+      // initSortable should be included if needed in template
     }
   }
 }
 </script>
+  <!-- ERROR 1: Duplicate closing script tag - should cause template compilation error
+  Second closing tag would go here but is commented out -->
+
 <style scoped>
 body {
   background: #f7f9fb;
@@ -156,6 +166,9 @@ body {
   font-size: 2.1rem;
   font-weight: 700;
   letter-spacing: -1px;
+  /* ERROR 6: CSS syntax error - missing semicolon */
+  /* text-decoration: underline */
+  text-decoration: underline;
 }
 .joke-btn {
   background: #2979FF;

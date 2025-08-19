@@ -72,49 +72,57 @@ export default {
   }
 }
 </script>
-
 <style scoped>
+body {
+  background: #f7f9fb;
+  font-family: 'Inter', 'Raleway', Arial, sans-serif;
+}
 .joke-generator {
   max-width: 480px;
   margin: 3rem auto;
   padding: 2.5rem 2rem;
-  background: #4F436F;
+  background: #fff;
   border-radius: 1.2rem;
-  box-shadow: 0 2px 16px 0 rgba(76, 70, 109, 0.08);
+  box-shadow: 0 4px 24px 0 rgba(26,35,126,0.10);
   text-align: center;
-  font-family: 'Google Play', 'Raleway', Arial, sans-serif;
+  font-family: inherit;
 }
 .joke-generator h1 {
-  color: #ECA72C;
-  font-family: 'Raleway', Arial, sans-serif;
+  color: #1A237E;
+  font-family: inherit;
   margin-bottom: 2rem;
-  font-size: 2rem;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -1px;
 }
 .joke-btn {
-  background: #663c7c;
+  background: #2979FF;
   color: #fff;
   border: none;
-  padding: 0.9rem 2rem;
-  border-radius: 0.5rem;
+  padding: 1rem 2.2rem;
+  border-radius: 2rem;
   font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
   font-family: inherit;
   margin-bottom: 2rem;
-  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(41,121,255,0.10);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 .joke-btn:hover {
-  background: #EAE6EF;
-  color: #4F436F;
+  background: #1A237E;
+  color: #FFD600;
+  box-shadow: 0 4px 16px 0 rgba(41,121,255,0.18);
 }
 .joke-output {
   margin-top: 1.5rem;
-  background: #f8f8f8;
-  color: #4F436F;
-  border-radius: 0.7rem;
+  background: #f7f9fb;
+  color: #1A237E;
+  border-radius: 1rem;
   padding: 1.2rem;
   font-size: 1.15rem;
-  font-family: 'Raleway', Arial, sans-serif;
-  box-shadow: 0 1px 8px 0 rgba(76, 70, 109, 0.06);
+  font-family: inherit;
+  box-shadow: 0 1px 8px 0 rgba(26,35,126,0.06);
   position: relative;
 }
 .joke-actions {
@@ -124,32 +132,38 @@ export default {
   gap: 1.5rem;
 }
 .thumb-btn {
-  background: #ECA72C;
-  color: #fff;
+  background: #FFD600;
+  color: #1A237E;
   border: none;
   border-radius: 50%;
   width: 2.5rem;
   height: 2.5rem;
   font-size: 1.3rem;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(255,214,0,0.10);
 }
 .thumb-btn:hover {
-  background: #E6C229;
+  background: #2979FF;
+  color: #fff;
 }
 .liked-list {
   margin-top: 2.5rem;
-  background: #fff2;
+  background: #f7f9fb;
   border-radius: 1rem;
   padding: 1.5rem 1rem;
   max-width: 480px;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 0 2px 12px 0 rgba(26,35,126,0.08);
 }
 .liked-list h2 {
-  color: #ECA72C;
-  font-family: 'Raleway', Arial, sans-serif;
+  color: #1A237E;
+  font-family: inherit;
   margin-bottom: 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 .liked-list-ul {
   list-style: none;
@@ -159,17 +173,18 @@ export default {
 .liked-joke {
   display: flex;
   align-items: center;
-  background: #fff4;
+  background: #fff;
   border-radius: 0.6rem;
   margin-bottom: 0.7rem;
   padding: 0.7rem 1rem;
   font-size: 1rem;
-  color: #4F436F;
+  color: #1A237E;
+  box-shadow: 0 1px 4px 0 rgba(26,35,126,0.04);
 }
 .joke-num {
   font-weight: bold;
   margin-right: 0.7rem;
-  color: #ECA72C;
+  color: #2979FF;
 }
 .joke-text {
   flex: 1;
@@ -177,14 +192,13 @@ export default {
 .delete-btn {
   background: transparent;
   border: none;
-  color: #ECA72C;
+  color: #2979FF;
   font-size: 1.2rem;
   cursor: pointer;
   margin-left: 0.7rem;
   transition: color 0.2s;
 }
 .delete-btn:hover {
-  color: #E6C229;
+  color: #FFD600;
 }
 </style>
-

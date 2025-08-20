@@ -42,7 +42,12 @@ export default {
     // Initialize sortable after component is mounted
     const initSortable = async () => {
       await nextTick()
-      if (sortableRef.value && !sortableInstance) {
+      if (sortableRef.value) {
+        // Destroy existing instance if it exists
+        if (sortableInstance) {
+          sortableInstance.destroy()
+        }
+
         sortableInstance = new Sortable(sortableRef.value, {
           animation: 200,
           ghostClass: 'ghost',
@@ -78,10 +83,12 @@ export default {
     })
 
     // Watch for changes to likedJokes and save to localStorage
-    watch(likedJokes, (newJokes) => {
+    watch(likedJokes, async (newJokes) => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(newJokes))
-      // Don't reinitialize sortable here - it causes infinite loops
-      // The sortable instance will handle the DOM updates automatically
+      // Reinitialize sortable when jokes are added/removed
+      if (newJokes.length > 0) {
+        await initSortable()
+      }
     }, { deep: true })
 
     async function fetchJoke() {

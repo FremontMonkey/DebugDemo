@@ -5,7 +5,7 @@
     <div v-if="joke" class="joke-output">
       <div>{{ joke }}</div>
       <div class="joke-actions">
-        <button class="thumb-btn like-btn" @click="likeJoke" title="Like">👍🏻</button>
+        <button class="thumb-btn like-btn" @click="LikeJoke" title="Like">👍🏻</button>
         <button class="thumb-btn dislike-btn" @click="dislikeJoke" title="Dislike">👎🏻</button>
       </div>
     </div>
@@ -85,9 +85,16 @@ export default {
     // Watch for changes to likedJokes and save to localStorage
     watch(likedJokes, async (newJokes) => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(newJokes))
-      // Reinitialize sortable when jokes are added/removed
-      if (newJokes.length > 0) {
+
+      // Initialize sortable only when transitioning from empty to non-empty
+      if (newJokes.length > 0 && !sortableInstance) {
         await initSortable()
+      }
+
+      // Destroy sortable when becoming empty
+      if (newJokes.length === 0 && sortableInstance) {
+        sortableInstance.destroy()
+        sortableInstance = null
       }
     }, { deep: true })
 

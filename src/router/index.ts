@@ -11,11 +11,6 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/haiku',
-      name: 'haiku',
-      component: () => import('../views/HaikuGeneratorView.vue'),
-    },
-    {
       path: '/joke',
       name: 'joke',
       component: () => import('../views/JokeGeneratorView.vue'),

@@ -1,7 +1,8 @@
 <template>
-  <div class="joke-generator">
-    <h1>Joke Generator 😂</h1>
-    <button class="joke-btn" @click="fetchJoke">Generate Joke</button>
+  <div class="container">
+    <div class="joke-generator">
+      <h1>Joke Generator 😂</h1>
+      <button class="joke-btn" @click="fetchJoke">Generate Joke</button>
     <div v-if="joke" class="joke-output">
       <div>{{ joke }}</div>
       <div class="joke-actions">
@@ -24,6 +25,7 @@
       </ul>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -138,21 +140,25 @@ export default {
 </script>
 
 <style scoped>
-body {
-  background: #f7f9fb;
-  font-family: 'Inter', 'Raleway', Arial, sans-serif;
-}
-.joke-generator {
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 3rem 1rem;
+  box-sizing: border-box;
   width: 100%;
-  max-width: 720px;
-  margin: 3rem auto;
-  padding: 2.5rem 2rem;
+}
+
+.joke-generator {
+  width: 1000px;
+  padding: 3rem 2.5rem;
   background: #EAE6EF;
   border-radius: 1.2rem;
   box-shadow: 0 4px 24px 0 rgba(26,35,126,0.10);
   text-align: center;
-  font-family: inherit;
-  display: block;
+  font-family: 'Inter', 'Raleway', Arial, sans-serif;
+  box-sizing: border-box;
 }
 .joke-generator h1 {
   color: #1A237E;
@@ -161,7 +167,6 @@ body {
   font-size: 2.1rem;
   font-weight: 700;
   letter-spacing: -1px;
-  text-decoration: underline;
 }
 .joke-btn {
   background: #2979FF;

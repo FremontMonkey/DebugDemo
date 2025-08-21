@@ -57,3 +57,10 @@
 - **Change**: Add route reference to file that doesn't exist
 - **Expected Impact**: Module resolution error, failed imports
 - **Error Type**: File/module not found error
+
+### Bug 9: Function Not Returned from Setup
+- **File**: `JokeGeneratorView.vue`
+- **Location**: `setup()` return object
+- **Change**: Remove `initSortable` from return statement
+- **Expected Impact**: Function not accessible, breaks drag-and-drop functionality
+- **Error Type**: Vue Composition API scope error

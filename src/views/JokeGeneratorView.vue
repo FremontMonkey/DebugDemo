@@ -140,7 +140,8 @@ export default {
       likeJoke,
       dislikeJoke,
       removeJoke,
-      clearAllJokes
+      clearAllJokes,
+      initSortable
     }
   }
 }

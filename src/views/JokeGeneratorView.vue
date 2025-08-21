@@ -5,7 +5,7 @@
     <div v-if="joke" class="joke-output">
       <div>{{ joke }}</div>
       <div class="joke-actions">
-        <button class="thumb-btn like-btn" @click="LikeJoke" title="Like">👍🏻</button>
+        <button class="thumb-btn like-btn" @click="likeJoke" title="Like">👍🏻</button>
         <button class="thumb-btn dislike-btn" @click="dislikeJoke" title="Dislike">👎🏻</button>
       </div>
     </div>
@@ -103,7 +103,7 @@ export default {
       try {
         const res = await fetch('https://official-joke-api.appspot.com/random_joke')
         const data = await res.json()
-        joke.value = data.setup + ' ' + data.punchline
+        joke.value =  data.setup + ' ' + data.punchline
       } catch (e) {
         joke.value = 'Failed to fetch joke.'
       }

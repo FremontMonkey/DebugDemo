@@ -1,7 +1,4 @@
-# Bug Documentation for Code Rabbit Testing
-
-**Branch**: `feature/introduce-bugs`  
-**Purpose**: Evaluate Code Rabbit's debugging capabilities with clean, undocumented bugs
+# Bug Documentation
 
 ## Bugs to be introduced:
 
@@ -54,11 +51,9 @@
 - **Expected Impact**: Template compilation error
 - **Error Type**: Template structure error
 
-## Implementation Status:
-- ✅ Bug 1: Method name typo implemented (`dislikeJok`) - Silent failure
-- ✅ Bug 2: API properties implemented (`data.question + data.answer`) - Shows "undefined undefined"
-- ⏸️ Bug 3: Array method (commented out - correct version active)
-- ⏸️ Bug 4: CSS syntax (commented out - correct version active)
-- ⏸️ Bug 5: Missing return (commented out - correct version active)
-- ⏸️ Bug 6: Undefined variable (commented out - correct version active)
-- ⏸️ Bug 7: Duplicate script tag (commented out - correct version active)
+### Bug 8: Missing Route Component (File Deletion)
+- **File**: `router/index.ts` 
+- **Location**: Router configuration
+- **Change**: Add route reference to file that doesn't exist
+- **Expected Impact**: Module resolution error, failed imports
+- **Error Type**: File/module not found error

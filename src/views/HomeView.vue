@@ -4,9 +4,6 @@
 <template>
   <main class="home-menu">
     <ul class="app-list">
-      <!-- <li>
-        <router-link to="/haiku" class="app-link">Haiku Generator</router-link>
-      </li> -->
       <li>
         <router-link to="/joke" class="app-link">Joke Generator</router-link>
       </li>

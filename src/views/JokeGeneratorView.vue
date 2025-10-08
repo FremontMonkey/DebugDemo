@@ -3,6 +3,8 @@
     <div class="joke-generator">
       <h1>Joke Generator 😂</h1>
       <button class="joke-btn" @click="fetchJoke">Generate Joke</button>
+      <!-- <button class="debug-btn" @click="myFunction" title="Trigger Error for DevTools">Trigger Error</button> -->
+      <!-- <button class="debug-btn" @click="demonstrateErrorObject" title="Demo Error Object for DevTools">Demo Error Object</button> -->
     <div v-if="joke" class="joke-output">
       <div>{{ joke }}</div>
       <div class="joke-actions">
@@ -32,6 +34,7 @@
 
 import { ref, onMounted, watch, nextTick } from 'vue'
 import Sortable from 'sortablejs'
+import '../demo-edit.js' // Demo file for blog post
 
 export default {
   setup() {
@@ -102,13 +105,14 @@ export default {
 
     async function fetchJoke() {
       joke.value = ''
-      try {
-        const res = await fetch('https://official-joke-api.appspot.com/random_joke')
-        const data = await res.json()
-        joke.value =  data.setup + ' ' + data.punchline
-      } catch (e) {
-        joke.value = 'Failed to fetch joke.'
-      }
+      const res = await fetch('https://official-joke-api.appspot.com/random_joke')
+      const data = await res.json()
+
+      // Artificial delay to simulate slow server response
+      await new Promise(r => setTimeout(r, 2000))
+
+      const formattedJoke = data.setup + ' ' + data.punchline
+      joke.value = formattedJoke
     }
 
     function likeJoke() {
@@ -132,6 +136,26 @@ export default {
       likedJokes.value = []
     }
 
+    // Function for blog post screenshot - creates console error
+    function myFunction() {
+      const user = null
+      // This will throw a TypeError when trying to access property of null
+      return user.name.toUpperCase()
+    }
+
+    // Function for blog post screenshot #5 - demonstrates error object interrogation
+    function demonstrateErrorObject() {
+      try {
+        myFunction()
+      } catch (err) {
+        console.log("%cCaught Error - Let's interrogate it:", "color: red; font-weight: bold;")
+        console.log("err.name:", err.name)
+        console.log("err.message:", err.message)
+        console.log("err.stack:", err.stack)
+        console.log("Full error object:", err)
+      }
+    }
+
     return {
       joke,
       likedJokes,
@@ -141,7 +165,9 @@ export default {
       dislikeJoke,
       removeJoke,
       clearAllJokes,
-      initSortable
+      initSortable,
+      myFunction,
+      demonstrateErrorObject
     }
   }
 }
@@ -194,6 +220,25 @@ export default {
   background: #1A237E;
   color: #FFD600;
   box-shadow: 0 4px 16px 0 rgba(41,121,255,0.18);
+}
+.debug-btn {
+  background: #FF5722;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  margin-bottom: 2rem;
+  margin-left: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(255,87,34,0.10);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.debug-btn:hover {
+  background: #D32F2F;
+  box-shadow: 0 4px 16px 0 rgba(255,87,34,0.18);
 }
 .joke-output {
   margin-top: 1.5rem;
